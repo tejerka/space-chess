@@ -21,7 +21,7 @@ jobs:
         working-directory: ./client
         run: |
           NODE_ENV=production npm run build
-          ls ./client/dist
+          ls ./dist
       - name: Commit build
         run: |
           ls ./client/dist
