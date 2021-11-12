@@ -3,6 +3,7 @@ import { listenAndServe } from "https://deno.land/std@0.111.0/http/server.ts";
 const handler = async (req) => {
   const { pathname } = new URL(req.url);
 
+  console.log(pathname);
   if (pathname === '/main.js') {
     new Response(await Deno.readFile("./client/dist/main.js"), {
       headers: {
