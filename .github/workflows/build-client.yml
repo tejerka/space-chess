@@ -2,7 +2,7 @@ name: build-client
 on:
   push:
     branches:
-      - main
+      - develop
 jobs:
   build-client:
     runs-on: ubuntu-latest
@@ -28,4 +28,4 @@ jobs:
           git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
           git add ./client/dist
           git commit -m "Automated build"
-          git push -f origin main:production
+          git push -f origin develop:main
