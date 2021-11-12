@@ -19,11 +19,15 @@ jobs:
         run: npm install
       - name: Build
         working-directory: ./client
-        run: npm run build
+        run: |
+          NODE_ENV=production npm run build
+          ls ./client/dist
       - name: Commit build
         run: |
+          ls ./client/dist
           git config --global user.name 'Tejerka'
           git config --global user.email 'tejerka@users.noreply.github.com'
           git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
-          git commit -am "Automated report"
+          git add ./client/dist
+          git commit -m "Automated build"
           git push -f origin main:production
