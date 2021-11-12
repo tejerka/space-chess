@@ -4,7 +4,7 @@ const handler = async (req) => {
   const file = await Deno.readFile("./client/dist/index.html");
   return new Response(file, {
     headers: {
-      "content-type": "text/css",
+      "content-type": "text/html; charset=utf-8",
     },
   });
 }
