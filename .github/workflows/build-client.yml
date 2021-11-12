@@ -20,11 +20,10 @@ jobs:
       - name: Build
         working-directory: ./client
         run: npm run build
-      - name: Push
-        uses: s0/git-publish-subdir-action@develop
-        env:
-          REPO: self
-          BRANCH: production
-          FOLDER: ./client/dist
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          MESSAGE: "Build: ({sha}) {msg}"
+      - name: Commit report
+        run: |
+          git config --global user.name 'Tejerka'
+          git config --global user.email 'tejerka@users.noreply.github.com'
+          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
+          git commit -am "Automated report"
+          git push origin main:production
